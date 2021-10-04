@@ -1,10 +1,22 @@
 import folium
+import pandas
+
+data = pandas.read_csv('Volcanoes.csv')
+latitude = list(data['LAT'])
+longitude = list(data['LON'])
+name = list(data['NAME'])
+
 
 m = folium.Map(location=[45.5236, -122.6750])
-folium.Marker(
-    location=[45.3288, -121.6625],
-    popup="Mt. Hood Meadows",
-    icon=folium.Icon(icon="cloud"),
-).add_to(m)
+
+
+
+for i in range(0, len(data.index)):
+    folium.Marker(
+        location=[latitude[i], longitude[i]],
+        popup=name[i],
+        icon=folium.Icon(icon='fire')
+        ).add_to(m)
+
 
 m.save('map.html')
