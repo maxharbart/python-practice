@@ -1,5 +1,13 @@
-student_grades = [9.1, 8.8, 7.5]
-student_grades.sort()
+my_string = "http://www.codewars.com/kata/"
+
+if 'https' in my_string:
+    token=my_string.split('https://')[1].split('.')[0]
+elif 'http'in my_string:
+    token=my_string.split('http://')[1].split('.')[0]
+elif 'http://www' in my_string:
+    token=my_string.split('http://www.')[1].split('.')[0]
+#elif 'www' in my_string:
+#    token=my_string.split('www.')[1].split('.')[0]
 
 
-print(student_grades[-1])
+print(token)

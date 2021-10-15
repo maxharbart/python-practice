@@ -20,13 +20,18 @@ def elev_color(x):
     else:
         return 'green'
 
+fg = folium.FeatureGroup()
+
 
 for i in range(0, len(data.index)):
-    folium.Marker(
+    fg.add_child(folium.Marker(
         location=[latitude[i], longitude[i]],
         popup=name[i] + ' ' + str(elev[i]) + ' meters',
-        icon=folium.Icon(icon='fire', color=elev_color(elev[i]))
-        ).add_to(m)
+        icon=folium.Icon(icon='fire', color=elev_color(elev[i]))))
 
 
+
+fg.add_child(folium.GeoJson(data=(open('world.json', 'r', encoding='utf-8-sig').read())))
+
+m.add_child(fg)
 m.save('map.html')
