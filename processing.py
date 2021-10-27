@@ -1,10 +1,12 @@
 import cv2
+import glob
 
-img = cv2.imread('interior.png')
+images = glob.glob('*.jpg')
 
-
-img2 = cv2.resize(img,(int(img.shape[1]/3),int(img.shape[0]/3)))
-
-cv2.imshow('interior', img2)
-cv2.waitKey(0) 
-cv2.destroyAllWindows()
+for image in images:
+    img = cv2.imread(image)
+    re = cv2.resize(img, (100, 100))
+    cv2.imwrite('resized_'+image,re)
+    cv2.imshow('image', re)
+    cv2.waitKey(0) 
+    cv2.destroyAllWindows()
